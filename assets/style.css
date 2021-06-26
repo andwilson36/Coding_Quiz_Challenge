@@ -6,8 +6,13 @@ body {
     background-color: rgb(243, 242, 242);
 }
 
+ul {
+    margin-bottom: 2rem;
+}
+
 li {
     display: inline;
+    margin-bottom: .3rem;
 }
 
 .view-hs {
@@ -39,6 +44,31 @@ main {
     background-color: blueviolet;
     color: white;
     padding: 10px;
+    border-radius: 10px;
+    border-color: white;
+}
+
+.result {
+    display: none;
+    color: darkgray;
+    border-top: 4px solid darkgray;
+    margin-top: 6rem;
+    width: 75%;
+    font-size: 2rem;
+    font-style: italic;
+}
+
+#intial {
+    margin-top: 1rem;
+    display: none;
+    border: 1px solid #ccc;
+}
+
+input[type=submit] {
+    display: none;
+    background-color: blueviolet;
+    color: white;
+    padding: 3px;
     border-radius: 10px;
     border-color: white;
 }

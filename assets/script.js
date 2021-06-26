@@ -6,6 +6,9 @@ var li1 = body.children[1].children[3].children[0];
 var li2 = body.children[1].children[3].children[1];
 var li3 = body.children[1].children[3].children[2];
 var li4 = body.children[1].children[3].children[3];
+var result = body.children[1].children[4];
+var form = body.children[1].children[5].children[0];
+var subBtn = body.children[1].children[5].children[1];
 var score = document.querySelector(".timer");
 var question = document.querySelector(".head");
 var instructions = document.querySelector(".instructions");
@@ -79,6 +82,8 @@ function question1() {
 }
 
 function wrgAns1() {
+    result.style.display = 'inline';
+    result.textContent = "Wrong!";
     timerCount = timerCount - 10;
     btn1.removeEventListener("click", wrgAns1);
     btn2.removeEventListener("click", wrgAns1);
@@ -88,6 +93,8 @@ function wrgAns1() {
 }     
 
 function crtAns1() {
+    result.style.display = 'inline';
+    result.textContent = "Correct!";
     btn1.removeEventListener("click", wrgAns1);
     btn2.removeEventListener("click", wrgAns1);
     btn3.removeEventListener("click", crtAns1);
@@ -109,6 +116,8 @@ function question2() {
 }
 
 function wrgAns2() {
+    result.style.display = 'inline';
+    result.textContent = "Wrong!";
     timerCount = timerCount - 10;
     btn1.removeEventListener("click", wrgAns2);
     btn2.removeEventListener("click", crtAns2);
@@ -118,6 +127,8 @@ function wrgAns2() {
 }
 
 function crtAns2() {
+    result.style.display = 'inline';
+    result.textContent = "Correct!";
     btn1.removeEventListener("click", wrgAns2);
     btn2.removeEventListener("click", crtAns2);
     btn3.removeEventListener("click", wrgAns2);
@@ -139,6 +150,8 @@ function question3() {
 }
 
 function wrgAns3() {
+    result.style.display = 'inline';
+    result.textContent = "Wrong!";
     timerCount = timerCount - 10;
     btn1.removeEventListener("click", wrgAns3);
     btn2.removeEventListener("click", wrgAns3);
@@ -148,6 +161,8 @@ function wrgAns3() {
 }
 
 function crtAns3() {
+    result.style.display = 'inline';
+    result.textContent = "Correct!";
     btn1.removeEventListener("click", wrgAns3);
     btn2.removeEventListener("click", wrgAns3);
     btn3.removeEventListener("click", wrgAns3);
@@ -169,6 +184,8 @@ function question4() {
 }
 
 function wrgAns4() {
+    result.style.display = 'inline';
+    result.textContent = "Wrong!";
     timerCount = timerCount - 10;
     btn1.removeEventListener("click", wrgAns4);
     btn2.removeEventListener("click", wrgAns4);
@@ -178,6 +195,8 @@ function wrgAns4() {
 }
 
 function crtAns4() {
+    result.style.display = 'inline';
+    result.textContent = "Correct!";
     btn1.removeEventListener("click", wrgAns4);
     btn2.removeEventListener("click", wrgAns4);
     btn3.removeEventListener("click", crtAns4);
@@ -199,6 +218,8 @@ function question5() {
 }
 
 function wrgAns5() {
+    result.style.display = 'inline';
+    result.textContent = "Wrong!";
     timerCount = timerCount - 10;
     btn1.removeEventListener("click", wrgAns5);
     btn2.removeEventListener("click", wrgAns5);
@@ -208,6 +229,8 @@ function wrgAns5() {
 }
 
 function crtAns5() {
+    result.style.display = 'inline';
+    result.textContent = "Correct!";
     btn1.removeEventListener("click", wrgAns5);
     btn2.removeEventListener("click", wrgAns5);
     btn3.removeEventListener("click", wrgAns5);
@@ -217,11 +240,14 @@ function crtAns5() {
 
 function quizOver() {
     clearInterval(timer);
+    result.style.display = 'none';
     btn1.style.display = 'none';
     btn2.style.display = 'none';
     btn3.style.display = 'none';
     btn4.style.display = 'none';
-    instructions.style.display = 'inline'
+    subBtn.style.display = 'inline';
+    instructions.style.display = 'inline';
+    form.style.display = 'inline';
     score.textContent = timerCount;
     instructions.textContent = "Your final score is " + timerCount + ".";
     question.textContent = "All done!";
