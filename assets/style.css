@@ -1,0 +1,44 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: rgb(250, 248, 245);
+}
+
+li {
+    display: inline;
+}
+
+.view-hs {
+    font-size: 2rem;
+}
+
+.timer {
+    display: inline;
+    font-size: 2rem;
+    float: right;
+}
+
+main {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.head {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.instructions {
+    font-size: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+.start-button {
+    background-color: blueviolet;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: white;
+}
