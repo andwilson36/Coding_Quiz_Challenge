@@ -1,5 +1,11 @@
 // variables
 var body = document.body;
+var main = body.children[1];
+var ul = body.children[1].children[3]
+var li1 = body.children[1].children[3].children[0];
+var li2 = body.children[1].children[3].children[1];
+var li3 = body.children[1].children[3].children[2];
+var li4 = body.children[1].children[3].children[3];
 var score = document.querySelector(".timer");
 var question = document.querySelector(".head");
 var instructions = document.querySelector(".instructions");
@@ -20,7 +26,7 @@ function startQuiz() {
     timerCount = 60;
     startBtn.style.display = 'none';
     instructions.style.display = 'none'
-    answerBtns();
+    quizAttr();
     question1();
     startTimer();
 }
@@ -35,16 +41,28 @@ function startTimer() {
     }, 1000);
 }
 
-function answerBtns() {
+function quizAttr() {
     btn1 = document.createElement("button");
     btn2 = document.createElement("button");
     btn3 = document.createElement("button");
     btn4 = document.createElement("button");
 
-    body.appendChild(btn1);
-    body.appendChild(btn2);
-    body.appendChild(btn3);
-    body.appendChild(btn4);
+    li1.appendChild(btn1);
+    li2.appendChild(btn2);
+    li3.appendChild(btn3);
+    li4.appendChild(btn4);
+
+    li1.setAttribute("style", "display:block;");
+    li2.setAttribute("style", "display:block;")
+    li3.setAttribute("style", "display:block;")
+    li4.setAttribute("style", "display:block;")
+
+    main.setAttribute("style", "text-align:left; margin-left:35rem")
+
+    btn1.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white;");
+    btn2.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white;");
+    btn3.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white;");
+    btn4.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white;");
 }
 
 function question1() {
@@ -199,8 +217,15 @@ function crtAns5() {
 
 function quizOver() {
     clearInterval(timer);
+    btn1.style.display = 'none';
+    btn2.style.display = 'none';
+    btn3.style.display = 'none';
+    btn4.style.display = 'none';
+    instructions.style.display = 'inline'
     score.textContent = timerCount;
-    question.textContent = "Your score is " + timerCount;
+    instructions.textContent = "Your final score is " + timerCount + ".";
+    question.textContent = "All done!";
+
 }
 
 startBtn.addEventListener("click", startQuiz);
