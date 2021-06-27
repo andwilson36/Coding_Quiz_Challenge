@@ -1,18 +1,24 @@
 // variables
 var body = document.body;
 var main = body.children[1];
-var ul = body.children[1].children[3]
-var li1 = body.children[1].children[3].children[0];
-var li2 = body.children[1].children[3].children[1];
-var li3 = body.children[1].children[3].children[2];
-var li4 = body.children[1].children[3].children[3];
-var result = body.children[1].children[4];
-var form = body.children[1].children[5].children[0];
-var subBtn = body.children[1].children[5].children[1];
+var hsList = body.children[1].children[2];
+var hs1 = body.children[1].children[2].children[0];
+var hs2 = body.children[1].children[2].children[1];
+var hs3 = body.children[1].children[2].children[2];
+var hs4 = body.children[1].children[2].children[3];
+var ul = body.children[1].children[4]
+var li1 = body.children[1].children[4].children[0];
+var li2 = body.children[1].children[4].children[1];
+var li3 = body.children[1].children[4].children[2];
+var li4 = body.children[1].children[4].children[3];
+var result = body.children[1].children[5];
+var form = body.children[1].children[6].children[0];
+var subBtn = body.children[1].children[6].children[1];
 var score = document.querySelector(".timer");
 var question = document.querySelector(".head");
 var instructions = document.querySelector(".instructions");
 var startBtn = document.querySelector(".start-button");
+var score1 = 0;
 
 var timer;
 var timerCount;
@@ -20,9 +26,17 @@ var btn1;
 var btn2;
 var btn3;
 var btn4;
+var intialsHS;
+var intials1;
+var intials2;
+var intials3;
+var intials4;
+var userScore;
+var score2;
+var score3;
+var score4;
 
 // function init() {
-    // getHS();
 // }
 
 function startQuiz() {
@@ -252,6 +266,71 @@ function quizOver() {
     instructions.textContent = "Your final score is " + timerCount + ".";
     question.textContent = "All done!";
 
+    subBtn.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        intialsHS = document.forms["intialsHS"]["intials"].value;
+        userScore = timerCount;
+
+        if(!intialsHS) {
+            alert("Score will not be saved (did not enter intials)");
+        } else if(userScore >= score1) {
+            score2 = score1;
+            intials2 = intials1;
+            localStorage.setItem("score2", score2)
+            localStorage.setItem("intials2", intials2)
+            score1 = userScore;
+            intials1 = intialsHS;
+            localStorage.setItem("score1", score1)
+            localStorage.setItem("intials1", intials1)
+        } else if(userScore >= score2) {
+            score3 = score2;
+            intials3 = intials2;
+            score2 = userScore;
+            intials2 = intialsHS;
+            localStorage.setItem("score2", score2)
+            localStorage.setItem("intials2", intials2)
+        } else if(userScore >= score3) {
+            score4 = score3;
+            intials4 = intials3;
+            score3 = userScore;
+            intials3 = intialsHS;
+            localStorage.setItem("score3", score3)
+            localStorage.setItem("intials3", intials3)
+        } else {
+            score4 = userScore;
+            intials4 = intialsHS;
+            localStorage.setItem("score4", score4)
+            localStorage.setItem("intials4", intials4)
+        }
+        highScores();
+    })
+}
+
+function highScores() {
+    question.textContent = "Highscores";
+    instructions.style.display = 'none';
+    form.style.display = 'none';
+    subBtn.style.display = 'none';
+
+    hsList.appendChild(hs1);
+    hsList.appendChild(hs2);
+    hsList.appendChild(hs3);
+    hsList.appendChild(hs4);
+
+    if(score1) {
+        hs1.textContent = "1. " + localStorage.getItem("intials1") + " - " + localStorage.getItem("score1");
+        hs1.setAttribute("style", "background-color:rgb(170, 124, 212); color:black; padding-right:400px; font-size: 1.5rem");
+    } else if(score2) {
+        hs2.textContent = "2. " + localStorage.getItem("intials2") + " - " + localStorage.getItem("score2");
+        hs2.setAttribute("style", "background-color:rgb(172, 111, 230); color:black; padding-right:400px; font-size: 1.5rem");
+    } else if(score3) {
+        hs3.textContent = "3. " + localStorage.getItem("intials3") + " - " + localStorage.getItem("score3");
+        hs3.setAttribute("style", "background-color:rgb(170, 124, 212); color:black; padding-right:400px; font-size: 1.5rem");
+    } else {
+        hs4.textContent = "Last attempt: " + localStorage.getItem("intials4") + " - " + localStorage.getItem("score4");
+        hs4.setAttribute("style", "background-color:rgb(172, 111, 230); color:black; padding-right:400px; font-size: 1.5rem");
+    }
 }
 
 startBtn.addEventListener("click", startQuiz);
