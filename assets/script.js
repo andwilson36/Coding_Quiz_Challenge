@@ -14,11 +14,17 @@ var li4 = body.children[1].children[4].children[3];
 var result = body.children[1].children[5];
 var form = body.children[1].children[6].children[0];
 var subBtn = body.children[1].children[6].children[1];
+var hsBtns = body.children[1].children[7];
+var tryAgn = body.children[1].children[7].children[0].children[0];
+var clear = body.children[1].children[7].children[1].children[0];
 var score = document.querySelector(".timer");
 var question = document.querySelector(".head");
 var instructions = document.querySelector(".instructions");
 var startBtn = document.querySelector(".start-button");
 var score1 = 0;
+var score2 = 0;
+var score3 = 0;
+var zero = 0;
 
 var timer;
 var timerCount;
@@ -32,12 +38,10 @@ var intials2;
 var intials3;
 var intials4;
 var userScore;
-var score2;
-var score3;
-var score4;
 
-// function init() {
-// }
+function init() {
+    hsBtns.style.display = 'none'
+}
 
 function startQuiz() {
     timerCount = 60;
@@ -79,7 +83,7 @@ function quizAttr() {
     btn1.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white;");
     btn2.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white;");
     btn3.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white;");
-    btn4.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white;");
+    btn4.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white; margin-bottom: 25px;");
 }
 
 function question1() {
@@ -272,43 +276,32 @@ function quizOver() {
         intialsHS = document.forms["intialsHS"]["intials"].value;
         userScore = timerCount;
 
-        if(!intialsHS) {
-            alert("Score will not be saved (did not enter intials)");
-        } else if(userScore >= score1) {
-            score2 = score1;
-            intials2 = intials1;
-            localStorage.setItem("score2", score2)
-            localStorage.setItem("intials2", intials2)
-            score1 = userScore;
-            intials1 = intialsHS;
-            localStorage.setItem("score1", score1)
-            localStorage.setItem("intials1", intials1)
-        } else if(userScore >= score2) {
-            score3 = score2;
-            intials3 = intials2;
-            score2 = userScore;
-            intials2 = intialsHS;
-            localStorage.setItem("score2", score2)
-            localStorage.setItem("intials2", intials2)
-        } else if(userScore >= score3) {
-            score4 = score3;
-            intials4 = intials3;
-            score3 = userScore;
-            intials3 = intialsHS;
-            localStorage.setItem("score3", score3)
-            localStorage.setItem("intials3", intials3)
+        if(!localStorage.getItem("score1")) {
+            localStorage.setItem("score1", userScore);
+            localStorage.setItem("intials1", intialsHS);
+        } else if(userScore >= localStorage.getItem("score1")){
+            localStorage.setItem("score2", score1);
+            localStorage.setItem("intials2", intials1);
+            localStorage.setItem("score1", userScore);
+            localStorage.setItem("intials1", intialsHS);
+        } else if(userScore >= localStorage.getItem("score2")) {
+            if(localStorage.getItem("score2")) {
+                localStorage.setItem("score3", score2);
+                localStorage.setItem("intials3", intials2);
+            }
+            localStorage.setItem("score2", userScore);
+            localStorage.setItem("intials2", intialsHS);
         } else {
-            score4 = userScore;
-            intials4 = intialsHS;
-            localStorage.setItem("score4", score4)
-            localStorage.setItem("intials4", intials4)
-        }
+            localStorage.setItem("score3", userScore);
+            localStorage.setItem("intials3", intialsHS);
+        } 
         highScores();
     })
 }
 
 function highScores() {
     question.textContent = "Highscores";
+    hsBtns.style.display = 'inline'
     instructions.style.display = 'none';
     form.style.display = 'none';
     subBtn.style.display = 'none';
@@ -318,19 +311,36 @@ function highScores() {
     hsList.appendChild(hs3);
     hsList.appendChild(hs4);
 
-    if(score1) {
+    tryAgn.addEventListener("click", function(event) {
+        event.preventDefault();
+        location.reload();
+    });
+    clear.addEventListener("click", function(event) {
+        event.preventDefault();
+        localStorage.clear();
+        hsList.style.display = 'none';
+        instructions.style.display = 'inline';
+        instructions.textContent = "No highscores!";
+        hsBtns.setAttribute("style", "margin-top: 2rem;")
+    });
+
+    if(localStorage.getItem("score1")) {
         hs1.textContent = "1. " + localStorage.getItem("intials1") + " - " + localStorage.getItem("score1");
-        hs1.setAttribute("style", "background-color:rgb(170, 124, 212); color:black; padding-right:400px; font-size: 1.5rem");
-    } else if(score2) {
+        hs1.setAttribute("style", "background-color:rgb(170, 124, 212); color:black; padding-right:400px; font-size: 1.5rem; width:70%");
+    }
+    if(localStorage.getItem("score2")) {
         hs2.textContent = "2. " + localStorage.getItem("intials2") + " - " + localStorage.getItem("score2");
-        hs2.setAttribute("style", "background-color:rgb(172, 111, 230); color:black; padding-right:400px; font-size: 1.5rem");
-    } else if(score3) {
+        hs2.setAttribute("style", "background-color:rgb(172, 111, 230); color:black; padding-right:400px; font-size: 1.5rem; width:70%");
+    }
+    if(localStorage.getItem("score3")) {
         hs3.textContent = "3. " + localStorage.getItem("intials3") + " - " + localStorage.getItem("score3");
-        hs3.setAttribute("style", "background-color:rgb(170, 124, 212); color:black; padding-right:400px; font-size: 1.5rem");
-    } else {
-        hs4.textContent = "Last attempt: " + localStorage.getItem("intials4") + " - " + localStorage.getItem("score4");
-        hs4.setAttribute("style", "background-color:rgb(172, 111, 230); color:black; padding-right:400px; font-size: 1.5rem");
+        hs3.setAttribute("style", "background-color:rgb(170, 124, 212); color:black; padding-right:400px; font-size: 1.5rem; width:70%");
+    } 
+    if(userScore) {
+        hs4.textContent = "Last attempt: " + intialsHS + " - " + userScore;
+        hs4.setAttribute("style", "background-color:rgb(172, 111, 230); color:black; padding-right:400px; font-size: 1.5rem; width:70%");
     }
 }
 
+init();
 startBtn.addEventListener("click", startQuiz);
