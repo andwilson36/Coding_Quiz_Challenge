@@ -39,10 +39,12 @@ var intials3;
 var intials4;
 var userScore;
 
+// init when page loads
 function init() {
     hsBtns.style.display = 'none'
 }
 
+// starts quiz
 function startQuiz() {
     timerCount = 60;
     startBtn.style.display = 'none';
@@ -52,6 +54,7 @@ function startQuiz() {
     startTimer();
 }
 
+// starts timer
 function startTimer() {
     timer = setInterval(function() {
         timerCount--;
@@ -62,6 +65,7 @@ function startTimer() {
     }, 1000);
 }
 
+// creates buttons for answer choicese
 function quizAttr() {
     btn1 = document.createElement("button");
     btn2 = document.createElement("button");
@@ -86,6 +90,7 @@ function quizAttr() {
     btn4.setAttribute("style", "color:white; background-color:blueviolet; padding: 10px; border-radius: 10px; border-color:white; margin-bottom: 25px;");
 }
 
+// question1-5 asks question and will start function depending on right or wrong
 function question1() {
     btn1.addEventListener("click", wrgAns1);
     btn2.addEventListener("click", wrgAns1);
@@ -99,6 +104,7 @@ function question1() {
     btn4.textContent = "Booleans";
 }
 
+// if answer was wrong
 function wrgAns1() {
     result.style.display = 'inline';
     result.textContent = "Wrong!";
@@ -110,6 +116,7 @@ function wrgAns1() {
     question2();
 }     
 
+// if answer was correct
 function crtAns1() {
     result.style.display = 'inline';
     result.textContent = "Correct!";
@@ -256,6 +263,7 @@ function crtAns5() {
     quizOver();
 }
 
+// after all questions have been answered
 function quizOver() {
     clearInterval(timer);
     result.style.display = 'none';
@@ -276,6 +284,7 @@ function quizOver() {
         intialsHS = document.forms["intialsHS"]["intials"].value;
         userScore = timerCount;
 
+        // ranks scores and stores to local storage
         if(!localStorage.getItem("score1")) {
             localStorage.setItem("score1", userScore);
             localStorage.setItem("intials1", intialsHS);
@@ -299,6 +308,7 @@ function quizOver() {
     })
 }
 
+// shows leaderboarc and places names and scores in order to highest-lowest
 function highScores() {
     question.textContent = "Highscores";
     hsBtns.style.display = 'inline'
@@ -342,5 +352,7 @@ function highScores() {
     }
 }
 
+// call for init function
 init();
+// listens for start quiz btn
 startBtn.addEventListener("click", startQuiz);
