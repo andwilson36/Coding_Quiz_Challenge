@@ -1,7 +1,7 @@
 # Coding_Quiz_Challenge
 A project assigned at the UTA coding bootcamp which asks for a quiz that asks questions about coding and records high scores.
 
-Link to the website:
+Link to the website: https://andwilson36.github.io/Coding_Quiz_Challenge/
 
 ## Objectives 
 ```
