@@ -19,10 +19,10 @@ Link to the website: https://andwilson36.github.io/Coding_Quiz_Challenge/
 
 ## Images of project 
 
-This is a screenshot of the starting page of the quiz, this has the "start quiz" button which will start the quiz, it also has a brief description of how the quiz works for the user.
+This is a screenshot of the starting page of the quiz, this has the "start quiz" button which will start the quiz, it also has a brief description of how the quiz works for the user:
 
 ![](/assets/images/start_screen.png)
 
-This is a screenshot of a snippet of JS code found inside the project.
+This is a screenshot of a snippet of JS code found inside the project:
 
 ![](/assets/images/code_snippet.png)
